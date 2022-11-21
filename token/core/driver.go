@@ -21,6 +21,7 @@ var (
 // If Register is called twice with the same name or if driver is nil,
 // it panics.
 func Register(name string, driver api2.Driver) {
+	logger.Info("driver registered")
 	driversMu.Lock()
 	defer driversMu.Unlock()
 	if driver == nil {
