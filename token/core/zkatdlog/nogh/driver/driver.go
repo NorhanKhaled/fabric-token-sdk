@@ -7,6 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 package driver
 
 import (
+	"runtime/debug"
+
 	"github.com/hyperledger-labs/fabric-smart-client/platform/view"
 	"github.com/hyperledger-labs/fabric-smart-client/platform/view/services/flogging"
 	"github.com/hyperledger-labs/fabric-smart-client/platform/view/services/kvs"
@@ -135,6 +137,7 @@ func (d *Driver) NewPublicParametersManager(params driver.PublicParameters) (dri
 }
 
 func init() {
-	logger.Info("token driver init")
+
+	logger.Info("token driver init", string(debug.Stack()))
 	core.Register(crypto.DLogPublicParameters, &Driver{})
 }

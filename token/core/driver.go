@@ -6,6 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 package core
 
 import (
+	"runtime/debug"
 	"sort"
 	"sync"
 
@@ -21,7 +22,7 @@ var (
 // If Register is called twice with the same name or if driver is nil,
 // it panics.
 func Register(name string, driver api2.Driver) {
-	logger.Info("driver registered")
+	logger.Info("driver registered", string(debug.Stack()))
 	driversMu.Lock()
 	defer driversMu.Unlock()
 	if driver == nil {
